@@ -1,0 +1,68 @@
+
+.collapsible {
+    width: 90% !important;
+    height: 100%;
+    background-color: #f9f9f9;
+    color: #444;
+    border: 1px solid #ddd;
+    transition: height 0.5s ease;
+    overflow: hidden;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 10px;
+  }
+  
+  
+  .collapsible.active .image-container {
+    display: block;
+  }
+  
+  .content p {
+    margin: 10px 0;
+    opacity: 0;
+    transition: opacity 0.5s ease 0.5s;
+  }
+  
+  .collapsible.active .content p {
+    opacity: 1;
+  }
+
+  .GeneralText {
+    display: flex;
+    flex-direction: row;
+    color: #444;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+  }
+
+  .itemBox {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  }
+  .GeneralBox.active{
+    height: 50vh !important;
+  }
+
+  .GeneralBox.active .collapsible{
+    height: 100% !important;
+  }
+
+  .GeneralBox {
+    border-radius: 25px;
+    display: flex;
+    margin: 10px;
+    height: 10vh;
+    width: 24vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #CDDCFE;
+    transition: height 0.7s ease;
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid #444; /* Assuming a border as seen in the image */
+  }
+  

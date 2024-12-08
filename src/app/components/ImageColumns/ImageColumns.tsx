@@ -1,88 +1,110 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Image from 'next/image';
 import './ImageColumns.css';
-import { useState } from 'react';
 
 interface ImageColumnsProps {
   type: string;
   images: string[];
+  onImageClick: (image: string) => void; // Callback prop for parent notification
 }
 
-
-const ImageColumns: React.FC<ImageColumnsProps> = ({ type, images }) => {
+const ImageColumns: React.FC<ImageColumnsProps> = ({ type, images, onImageClick }) => {
   const [selectedImageName, setSelectedImageName] = useState<string | null>(null);
 
-  const handleImageClick = (imageName: string) => {
-    setSelectedImageName(imageName);
+  const handleImageClick = (imageName: string, imagePath: string) => {
+    setSelectedImageName(imageName); // Always update the selected image
+    onImageClick(imagePath); // Notify parent of the selected image
+
+    const similarImages = getSimilarImages(imageName); // Get similar images
+    if (similarImages.length === 0) {
+      return; // If no similar images, do not show "more options"
+    }
   };
 
-  if (type === 'skin') {
-    // Calculate number of images per column
-    const images_ = images.map(img => img.replace(/\\/g, '/'));
-    const filteredImages = images_.filter(img => img.includes('base'));
-    const numColumns = 3;
-    const imagesPerColumn = Math.ceil(filteredImages.length / numColumns);
+  const handleGoBack = () => {
+    setSelectedImageName(null); // Reset the selected image to go back to the initial state
+  };
 
-    let similarImages: string[] = [];
-    if (selectedImageName) {
-      
-      similarImages = images_.filter(img => img.includes("assets/images/png/skins/" + selectedImageName));
-      let imagesPerColumn_ = Math.ceil(similarImages.length / numColumns);
-      return (
-        <div className="image-container">
-          {[...Array(numColumns)].map((_, columnIndex) => (
-            <div key={columnIndex} className="image-column">
-            {similarImages.slice(columnIndex * imagesPerColumn_, (columnIndex + 1) * imagesPerColumn_).map((img, index) => {
-              let imageName = img.split('assets/images/png/skins/').pop() || '';
-              imageName = imageName.split('/skins/')[0];
-              return (
-                <div
-                  key={index}
-                  className="image"
-                  style={{
-                    backgroundImage: `url(${img})`,
-                    backgroundSize: 'contain',
-                    border: selectedImageName === imageName ? '2px solid red' : 'none'
-                  }}
-                >
-                  <img src={img} alt={imageName} />
-                </div>
-              );
-            })}
-            </div>
-          ))}
-        </div>
-      )
+  const images_ = images.map((img) => img.replace(/\\/g, '/')); // Normalize paths
+  const numColumns = 3; // Consistent number of columns for layout
+
+  // Define filtering logic based on the type
+  const getFilteredImages = () => {
+    if (type === 'skin') {
+      return images_.filter((img) => img.includes('base')); // Filter specific images for skins
+    } else if (type === 'icon') {
+      return images_.filter((img) => img.endsWith('.webp')); // Filter `.webp` images for icons
+    } 
+    return images_; // Default: return all images if no type-specific filtering is defined
+  };
+
+  const getSimilarImages = (imageName: string | null = selectedImageName) => {
+    if (!imageName) return [];
+    if (type === 'skin') {
+      return images_.filter((img) =>
+        img.includes(`assets/images/png/skins/${imageName}`)
+      );
+    } else if (type === 'icon') {
+      return images_.filter((img) =>
+        img.includes(`assets/images/png/icons/${imageName}`)
+      );
+    } else if (type === 'more') {
+      return images_.filter((img) => img.includes(imageName));
+    } else if (type === 'hechizos') {
+      return images_.filter((img) => img.includes(imageName));
     }
+    return [];
+  };
 
-    return (
-      <div className="image-container">
+  const filteredImages = getFilteredImages(); // Filtered images based on the type
+  const similarImages = selectedImageName ? getSimilarImages() : []; // Get similar images if an image is selected
+  const imagesToDisplay = similarImages.length > 0 ? similarImages : filteredImages; // Show similar images if available, otherwise initial images
+
+  const imagesPerColumn = Math.ceil(imagesToDisplay.length / numColumns);
+
+  return (
+    <div className="image-container">
+      {selectedImageName && similarImages.length > 0 && (
+        <div className="go-back-container">
+          <button className="go-back-button" onClick={handleGoBack}>
+            Go Back
+          </button>
+        </div>
+      )}
+      <div className="columns">
         {[...Array(numColumns)].map((_, columnIndex) => (
           <div key={columnIndex} className="image-column">
-          {filteredImages.slice(columnIndex * imagesPerColumn, (columnIndex + 1) * imagesPerColumn).map((img, index) => {
-            let imageName = img.split('assets/images/png/skins/').pop() || '';
-            imageName = imageName.split('/skins/')[0];
-            return (
-              <div
-                key={index}
-                className="image"
-                style={{
-                  backgroundImage: `url(${img})`,
-                  backgroundSize: 'contain',
-                  border: selectedImageName === imageName ? '2px solid red' : 'none'
-                }}
-                onClick={() => handleImageClick(imageName)}
-              >
-                <img src={img} alt={imageName} />
-              </div>
-            );
-          })}
-        </div>
-      ))}
+            {imagesToDisplay
+              .slice(columnIndex * imagesPerColumn, (columnIndex + 1) * imagesPerColumn)
+              .map((img, index) => {
+                const imageName =
+                  img.split('assets/images/png/skins/').pop()?.split('/skins/')[0] || // Skin name extraction
+                  img.split('assets/images/png/icons/').pop()?.split('/icons/')[0] || // Icon name extraction
+                  '';
+
+                return (
+                  <div
+                    key={index}
+                    className="image"
+                    style={{
+                      border: selectedImageName === imageName ? '2px solid red' : 'none',
+                    }}
+                    onClick={() => handleImageClick(imageName, img)} // Pass image path to parent
+                  >
+                    <Image
+                      src={'/' + img}
+                      alt={imageName}
+                      width={100}
+                      height={100}
+                    />
+                  </div>
+                );
+              })}
+          </div>
+        ))}
+      </div>
     </div>
   );
-}
-
-return null;
 };
 
 export default ImageColumns;

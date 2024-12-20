@@ -9,14 +9,15 @@ interface GeneralBoxProps {
   ext: string;
   images?: string[];
   icons: string[];
-  isExpanded: boolean;
+  isExpanded?: boolean;
+  isExpandedInput?: boolean;
   type?: "image" | "input"; // Add "input" as a type
   onClick: () => void;
   onInputChange?: (value: string) => void; // Callback for input changes
   onImageSelect?: (imagePath: string) => void; // Callback to notify parent
 }
 
-const GeneralBox: React.FC<GeneralBoxProps> = ({ item, ext, images, icons, isExpanded, type = "image", onClick, onInputChange, onImageSelect }) => {
+const GeneralBox: React.FC<GeneralBoxProps> = ({ item, ext, images, icons, isExpanded,isExpandedInput,  type = "image", onClick, onInputChange, onImageSelect }) => {
   const closeWindow = (func: Function) => {
     const GeneralBoxes = document.querySelectorAll(".GeneralBox");
     const collapsible = document.querySelectorAll(".collapsible");
@@ -24,12 +25,15 @@ const GeneralBox: React.FC<GeneralBoxProps> = ({ item, ext, images, icons, isExp
     console.log(GeneralBoxes);
     salir.forEach((element) => {
       element.classList.remove("active");
+      element.classList.remove("show");
     });
     GeneralBoxes.forEach((element) => {
       element.classList.remove("active");
+      element.classList.remove("show");
     });
     collapsible.forEach((element) => {
       element.classList.remove("active");
+      element.classList.remove("show");
     });
     func();
     console.log(GeneralBoxes);
@@ -50,7 +54,7 @@ const GeneralBox: React.FC<GeneralBoxProps> = ({ item, ext, images, icons, isExp
       className={`GeneralBox ${isExpanded ? "active" : ""} `}
       onClick={onClick}
       >
-      <button className={ `salir ${isExpanded ? "active" : ""}`} onClick={() => closeWindow(onClick)}>X</button>
+      <button className={ `salir ${isExpanded ? "active" : ""} ${isExpandedInput ? "show" : ""}`} onClick={() => closeWindow(onClick)}>X</button>
       <div className={`GeneralText`}>
         <Image
           className="icon"
@@ -64,7 +68,7 @@ const GeneralBox: React.FC<GeneralBoxProps> = ({ item, ext, images, icons, isExp
       </div>
       <div
         id={`${item}Box`}
-        className={`collapsible ${isExpanded ? "active" : ""}`}
+        className={`collapsible ${isExpanded ? "active" : ""} collapsible ${isExpandedInput ? "show" : ""}`}
         onClick={(e) => e.stopPropagation()}
         >
         {type === "image" && images && (
@@ -80,7 +84,7 @@ const GeneralBox: React.FC<GeneralBoxProps> = ({ item, ext, images, icons, isExp
           value={inputValue}
           onChange={handleInputChange}
           placeholder={`Ingrese su ${item}`}
-          className="input-field"
+          className={`input-field`}
           />
         )}
       </div>

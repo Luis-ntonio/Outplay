@@ -159,7 +159,7 @@ export default function Home() {
             ext="png"
             type="input"
             icons={icons}
-            isExpanded={expandedBox === "text"}
+            isExpandedInput={expandedBox === "text1"}
             onClick={() => handleBoxClick("text1")}
             onInputChange={(value) => handleInputChange("text1", value)}
           />
@@ -310,7 +310,7 @@ export default function Home() {
             ext="png"
             type="input"
             icons={icons}
-            isExpanded={expandedBox === "text"}
+            isExpandedInput={expandedBox === "text2"}
             onClick={() => handleBoxClick("text2")}
             onInputChange={(value) => handleInputChange("text2", value)}
           />

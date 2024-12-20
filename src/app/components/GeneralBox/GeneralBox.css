@@ -144,7 +144,7 @@ padding: 10px 20px;
 cursor: pointer;
 font-size: 1rem;
 border-radius: 5px;
-z-index: 10000;
+z-index: 101;
 }
 
 .full-screen-button {
@@ -167,7 +167,7 @@ position: absolute;
 
 /* Hide regular ImageColumns container in mobile view */
 .collapsible {
-z-index: 10000;
+z-index: 10;
 visibility: hidden;
 position: fixed !important;
 height: 100% !important;
@@ -186,7 +186,7 @@ background: linear-gradient(rgba(255, 255, 255, 1), rgba(0,0,0, 0)) !important;
 height: 10vh !important;
 }
 .image-container{
-  z-index: 10000;
+  z-index: 11;
 padding: 20px;
 }
 .salir.active{
@@ -195,7 +195,7 @@ padding: 20px;
 --enhanced-glow-color: rgb(231, 206, 255);
 --btn-color: rgb(100, 61, 136);
 visibility: visible !important;  
-z-index: 10001;
+z-index: 101;
 top: 60px;
 height: 40px !important;
 width: 40px !important;
@@ -218,7 +218,7 @@ position: fixed;
   --enhanced-glow-color: rgb(231, 206, 255);
   --btn-color: rgb(100, 61, 136);
   visibility: visible !important;  
-  z-index: 99999;
+  z-index: 101;
   top: 60px;
   height: 40px !important;
   width: 40px !important;

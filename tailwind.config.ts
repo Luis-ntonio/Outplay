@@ -13,6 +13,9 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      fontFamily: {
+        Panchang_Complete: ["Panchang_Complete", "Panchang_Complete_Regular", "Panchang_Complete_Bold", "Panchang_Complete_Heavy"],
+      },
     },
   },
   plugins: [],

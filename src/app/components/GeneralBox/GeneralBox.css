@@ -1,68 +1,210 @@
 
 .collapsible {
-    width: 90% !important;
-    height: 100%;
-    background-color: #f9f9f9;
-    color: #444;
-    border: 1px solid #ddd;
-    transition: height 0.5s ease;
-    overflow: hidden;
-    margin-left: 5%;
-    margin-right: 5%;
-    padding: 10px;
-  }
-  
-  
-  .collapsible.active .image-container {
-    display: block;
-  }
-  
-  .content p {
-    margin: 10px 0;
-    opacity: 0;
-    transition: opacity 0.5s ease 0.5s;
-  }
-  
-  .collapsible.active .content p {
-    opacity: 1;
-  }
+width: 90% !important;
+height: 100%;
+background-color: none;
+color: #444;
+border: none;
+transition: height 0.5s ease;
+overflow: hidden;
+margin-left: 5%;
+margin-right: 5%;
+padding: 10px;
+}
 
-  .GeneralText {
-    display: flex;
-    flex-direction: row;
-    color: #444;
-    justify-content: center;
-    align-items: center;
-    height: 30px;
-  }
 
-  .itemBox {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-  }
-  .GeneralBox.active{
-    height: 50vh !important;
-  }
+.collapsible.active .image-container {
+display: block;
+}
 
-  .GeneralBox.active .collapsible{
-    height: 100% !important;
-  }
+.content p {
+margin: 10px 0;
+opacity: 0;
+transition: opacity 0.5s ease 0.5s;
+}
 
-  .GeneralBox {
-    border-radius: 25px;
-    display: flex;
-    margin: 10px;
-    height: 10vh;
-    width: 24vw;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #CDDCFE;
-    transition: height 0.7s ease;
-    padding: 10px;
-    cursor: pointer;
-    border: 1px solid #444; /* Assuming a border as seen in the image */
-  }
-  
+.collapsible.active .content p {
+opacity: 1;
+}
+
+.GeneralText {
+display: flex;
+flex-direction: row;
+color: #fff;
+justify-content: center;
+align-items: center;
+height: 30px;
+}
+
+.itemBox {
+display: flex;
+align-items: center;
+height: 100%;
+width: 100%;
+}
+.GeneralBox.active{
+height: 50vh !important;
+}
+
+.GeneralBox.active .collapsible{
+height: 100% !important;
+}
+
+input {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: center;
+}
+
+.GeneralBox {
+border-radius: 25px;
+display: flex;
+margin: 5px;
+height: 10vh;
+width: 24vw;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+background: linear-gradient(
+135deg,
+#a020f0 20%,
+#8b0000 50%,
+#000000 80%
+);
+transition: height 0.7s ease;
+padding: 10px;
+cursor: pointer;
+border: 1px solid #444;
+position: relative;
+}
+.flash-border {
+position: relative;
+border-radius: 25px; /* Optional: For rounded corners */
+background: transparent; /* No background */
+overflow: hidden; /* Ensures border effects stay inside */
+}
+
+.flash-border::before {
+content: '';
+position: absolute;
+top: 0px;
+left: 0px;
+right: 0px;
+bottom: 0px;
+border-radius: 25px; /* Match parent border radius */
+background: linear-gradient(
+90deg,
+rgba(255, 255, 255, 0.1),
+rgba(0, 255, 255, 0.5),
+rgba(255, 255, 255, 0.1)
+);
+background-size: 300% 300%;
+animation: flash 2s infinite linear;
+}
+
+@keyframes flash {
+0% {
+background-position: 0% 50%;
+}
+50% {
+background-position: 100% 50%;
+}
+100% {
+background-position: 0% 50%;
+}
+}
+
+
+/* Fullscreen overlay for mobile */
+.fullscreen-overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100vw;
+height: 100vh;
+background-color: rgba(0, 0, 0, 0.95); /* Dark semi-transparent background */
+z-index: 9999;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 20px;
+box-sizing: border-box;
+}
+
+.close-button {
+position: absolute;
+top: 20px;
+right: 20px;
+background-color: #9a4ca2;
+color: white;
+border: none;
+padding: 10px 20px;
+cursor: pointer;
+font-size: 1rem;
+border-radius: 5px;
+z-index: 10000;
+}
+
+.full-screen-button {
+display: none;
+background-color: #9a4ca2;
+color: white;
+border: none;
+padding: 5px 10px;
+cursor: pointer;
+font-size: 0.9rem;
+margin-top: 5px;
+border-radius: 5px;
+}
+.salir{
+visibility: hidden;
+position: absolute;
+}
+/* Show full-screen button only on mobile */
+@media (max-width: 950px) {
+
+/* Hide regular ImageColumns container in mobile view */
+.collapsible {
+z-index: 90;
+visibility: hidden;
+position: absolute;
+height: 100% !important;
+width: 100vw !important;
+top: 44px !important;
+left: 0px !important;
+margin: 0px !important;
+padding: 10px 0px !important;
+}
+
+.collapsible.active .image-container {
+visibility: visible;
+background-color: #646464 !important;
+}
+.GeneralBox.active{
+height: 10vh !important;
+}
+.image-container{
+padding: 20px;
+height: 550px !important;
+}
+.salir.active{
+--glow-color: rgb(217, 176, 255);
+--glow-spread-color: rgba(191, 123, 255, 0.781);
+--enhanced-glow-color: rgb(231, 206, 255);
+--btn-color: rgb(100, 61, 136);
+visibility: visible !important;  
+z-index: 10000;
+top: 60px;
+height: 40px !important;
+width: 40px !important;
+
+padding: 0px !important;
+left: 10px;
+box-shadow: none !important;
+}
+.salir{
+visibility: hidden;  
+position: absolute;
+}
+}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import './ImageColumns.css';
 
@@ -20,17 +20,25 @@ const ImageColumns: React.FC<ImageColumnsProps> = ({ type, images, onImageClick 
       return; // If no similar images, do not show "more options"
     }
   };
-
+  
   const handleGoBack = () => {
     setSelectedImageName(null); // Reset the selected image to go back to the initial state
   };
-
+  
   const images_ = images.map((img) => img.replace(/\\/g, '/')); // Normalize paths
   const numColumns = 3; // Consistent number of columns for layout
-
+  
+  useEffect(() => {
+    if (images_.length > 0 && !selectedImageName) {
+      const firstImage = images_[0];
+      const firstImageName = firstImage.split('/').pop()?.split('.')[0] || '';
+      setSelectedImageName(firstImageName);
+      onImageClick(firstImage); // Trigger parent callback
+    }
+  }, [images_, selectedImageName, onImageClick]);
   // Define filtering logic based on the type
   const getFilteredImages = () => {
-    if (type === 'skin') {
+    if (type === 'Skin') {
       return images_.filter((img) => img.includes('base')); // Filter specific images for skins
     } else if (type === 'icon') {
       return images_.filter((img) => img.endsWith('.webp')); // Filter `.webp` images for icons
@@ -40,7 +48,7 @@ const ImageColumns: React.FC<ImageColumnsProps> = ({ type, images, onImageClick 
 
   const getSimilarImages = (imageName: string | null = selectedImageName) => {
     if (!imageName) return [];
-    if (type === 'skin') {
+    if (type === 'Skin') {
       return images_.filter((img) =>
         img.includes(`assets/images/png/skins/${imageName}`)
       );

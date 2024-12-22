@@ -15,7 +15,6 @@ z-index: 11;
 
 
 .collapsible.active .image-container {
-  pointer-events: all;
 display: block;
 }
 
@@ -185,6 +184,7 @@ height: 10vh !important;
 }
 .image-container{
 padding: 20px;
+position: fixed;
 }
 .salir.active{
 --glow-color: rgb(217, 176, 255);

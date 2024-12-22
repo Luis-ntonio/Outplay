@@ -68,7 +68,7 @@ const GeneralBox: React.FC<GeneralBoxProps> = ({ item, ext, images, icons, isExp
       </div>
       <div
         id={`${item}Box`}
-        className={`collapsible ${isExpanded ? "active" : ""} collapsible ${isExpandedInput ? "show" : ""}`}
+        className={`collapsible ${isExpanded ? "active" : ""} ${isExpandedInput ? "show" : ""}`}
         onClick={(e) => e.stopPropagation()}
         >
         {type === "image" && images && (

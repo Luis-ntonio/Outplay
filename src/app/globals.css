@@ -64,14 +64,14 @@
   text-align: center;
   justify-content: center;
   align-items: center;
-  display: flex;
+  display: -webkit-flex;
   height: 6%;
   padding: 10px 0; /* Some padding to increase height and make text more visible */
   z-index: 100; /* Ensures it stays on top of other content */
 }
 
 .bigcont {
-  display: flex;
+  display: -webkit-flex;
   justify-content: space-between;
   align-items: center;
   gap: 10px; /* Spacing between items */
@@ -79,7 +79,7 @@
 
 /* Left and Right containers */
 .leftcont, .rightcont {
-  display: flex;
+  display: -webkit-flex;
   flex-direction: column;
   gap: 10px;
 }
@@ -89,7 +89,7 @@
   height: 900px;
   width: 527.5862px;
   position: relative;
-  display: flex;
+  display: -webkit-flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
@@ -307,7 +307,7 @@ h1.transform-hechizos {
 @media (max-width: 950px) {
   /* Main container: Flex layout for all screen sizes */
 .bigcont {
-  display: flex;
+  display: -webkit-flex;
   flex-direction: row; /* Horizontal layout by default */
   flex-wrap: wrap; /* Wrap items to new lines */
   justify-content: center; /* Center items in rows */
@@ -316,7 +316,7 @@ h1.transform-hechizos {
 
 /* Left and Right containers (combine them for simplicity) */
 .leftcont, .rightcont {
-  display: flex;
+  display: -webkit-flex;
   flex-wrap: wrap; /* Ensure items wrap to new rows */
   justify-content: center;
   gap: 10px; /* Space between GeneralBoxes */

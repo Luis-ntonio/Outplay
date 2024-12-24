@@ -184,6 +184,13 @@ h1.transform-hechizos {
     0.866025,   0,       0.5,      0,
    5,     0,      15,        1) rotate(4deg);
 }
+h1.transform-hechizos2 {
+  transform: matrix3d(
+    1,        0,      -0.866025, -0.002,
+    0,   0.94,    -1.03209,  0,
+    0.866025,   0,       0.5,      0,
+   5,     0,      15,        1) rotate(6deg);
+}
 
 .text{
   width: 100%;

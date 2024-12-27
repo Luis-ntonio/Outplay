@@ -9,6 +9,10 @@ const hechizosDirectoryPath1 = path.join(__dirname, 'public', 'assets', 'Outplay
 const hechizosDirectoryPath2 = path.join(__dirname, 'public', 'assets', 'Outplay', 'OTROS', 'HECHIZO_2');
 const MarcosDirectoryPath = path.join(__dirname, 'public', 'assets', 'Outplay', 'NORMAL', 'MARCOS');
 const BordesDirectoryPath = path.join(__dirname, 'public', 'assets', 'Outplay', 'NORMAL', 'BORDES');
+const FondosValoDirectoryPath = path.join(__dirname, 'public', 'assets', 'Outplay', 'playercards');
+const AdicionalesValoDirectoryPath = path.join(__dirname, 'public', 'assets', 'Outplay', 'Adicionales');
+const MarcosValoDirectoryPath = path.join(__dirname, 'public', 'assets', 'Outplay', '4x');
+const RankValoDirectoryPath = path.join(__dirname, 'public', 'assets', 'Outplay', 'rank_png');
 const outputPath = path.join(__dirname, 'imagePaths.ts');
 
 // Arrays to store paths
@@ -20,6 +24,10 @@ const hechizosPaths1 = [];
 const hechizosPaths2 = [];
 const bordesPaths = [];
 const marcosPaths = [];
+const fondosvaloPaths = [];
+const adicionalesvaloPaths = [];
+const marcosvaloPaths = [];
+const rankvaloPaths = [];
 
 // Updated regular expression to detect all valid image files
 const imageFileRegex = /\.(jpg|jpeg|png|gif|webp)$/i;
@@ -47,6 +55,10 @@ scanDirectory(hechizosDirectoryPath1, hechizosPaths1);
 scanDirectory(hechizosDirectoryPath2, hechizosPaths2);
 scanDirectory(MarcosDirectoryPath, marcosPaths);
 scanDirectory(BordesDirectoryPath, bordesPaths);
+scanDirectory(FondosValoDirectoryPath, fondosvaloPaths);
+scanDirectory(AdicionalesValoDirectoryPath, adicionalesvaloPaths);
+scanDirectory(MarcosValoDirectoryPath, marcosvaloPaths);
+scanDirectory(RankValoDirectoryPath, rankvaloPaths);
 
 // Create file content
 const content = `
@@ -58,6 +70,10 @@ export const hechizos1: string[] = ${JSON.stringify(hechizosPaths1, null, 2)};
 export const hechizos2: string[] = ${JSON.stringify(hechizosPaths2, null, 2)};
 export const bordes: string[] = ${JSON.stringify(bordesPaths, null, 2)};
 export const marcos: string[] = ${JSON.stringify(marcosPaths, null, 2)};
+export const fondosvalo: string[] = ${JSON.stringify(fondosvaloPaths, null, 2)};
+export const adicionalesvalo: string[] = ${JSON.stringify(adicionalesvaloPaths, null, 2)};
+export const marcosvalo: string[] = ${JSON.stringify(marcosvaloPaths, null, 2)};
+export const rankvalo: string[] = ${JSON.stringify(rankvaloPaths, null, 2)};
 `;
 
 // Write to file

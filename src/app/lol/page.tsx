@@ -29,15 +29,12 @@ export default function Home() {
   const [imagePositions, setImagePositions] = useState<{ [key: string]: { left: number; top: number } }>({});
 
   const updateImagePositions = () => {
-    console.log('updateImagePositions called'); // Debugging log
     const preview = previewRef.current;
     if (!preview) {
-      console.log('previewRef is null'); // Log if ref is not attached
       return;
     }
 
     const previewRect = preview.getBoundingClientRect();
-    console.log('Preview Rect:', previewRect); // Log the dimensions
 
     const newPositions = {
       image4: { left: (previewRect.right - previewRect.left)*0.63986, top: (previewRect.bottom - previewRect.top) * 0.80111 },
@@ -52,12 +49,10 @@ export default function Home() {
   };
 
   useEffect(() => {
-    console.log('useEffect triggered'); // Check if useEffect runs
     updateImagePositions(); // Set positions on mount
     window.addEventListener('resize', updateImagePositions); // Update on resize
 
     return () => {
-      console.log('Cleanup executed'); // Log cleanup
       window.removeEventListener('resize', updateImagePositions);
     };
   }, []);
@@ -67,7 +62,6 @@ export default function Home() {
   };
 
   const handleInputChange = (boxId: string, value: string) => {
-    console.log('Input Value:', inputValues); // Log the input value  
     setInputValues((prev) => ({ ...prev, [boxId]: value }));
   };
 

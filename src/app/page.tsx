@@ -42,26 +42,28 @@ export default function Home() {
             ))}
         </div>
       </div>
-      <div className='flex flex-row'>
+      <div className='HomeContainer'>
         <button
           onClick={() => redirectTo('/lol')}
           className="m-4 p-2 bg-blue-500 text-white rounded"
           style={{ 
             backgroundImage: "url('/assets/images/png/icons/Fondo LOL.jpeg')",
             backgroundSize: 'cover',
-            width: '500px',
-            height: '666.666px'
+            width: '25vw',
+            height: 'auto',
+            aspectRatio: '3 / 4'
           }}
         >
         </button>
         <button
           onClick={() => redirectTo('/valorant')}
-          className="m-4 p-2 bg-red-500 text-white rounded"
+          className="m-4 p-2 bg-red-500 text-white rounded fondos-options"
           style={{ 
             backgroundImage: "url('/assets/images/png/icons/Fondo Valo.jpeg')",
             backgroundSize: 'cover',
-            width: '500px',
-            height: '666.666px'
+            width: '25vw',
+            height: 'auto',
+            aspectRatio: '3 / 4'
           }}
         >
         </button>

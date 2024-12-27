@@ -24,6 +24,11 @@ const ImageColumns: React.FC<ImageColumnsProps> = ({ type, images, onImageClick 
   const handleGoBack = () => {
     setSelectedImageName(null); // Reset the selected image to go back to the initial state
   };
+
+  const handleClearSelection = () => {
+    setSelectedImageName('None'); // Clear the selected image
+    onImageClick(''); // Notify parent that the selection is cleared
+  };
   
   const images_ = images.map((img) => img.replace(/\\/g, '/')); // Normalize paths
   const numColumns = 3; // Consistent number of columns for layout
@@ -79,6 +84,11 @@ const ImageColumns: React.FC<ImageColumnsProps> = ({ type, images, onImageClick 
           </button>
         </div>
       )}
+      <div className="clear-selection-container">
+        <button className="clear-selection-button" onClick={() => handleClearSelection()}>
+          Clear Selection
+        </button>
+      </div>
       <div className="columns">
         {[...Array(numColumns)].map((_, columnIndex) => (
           <div key={columnIndex} className="image-column">

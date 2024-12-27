@@ -99,7 +99,7 @@ const GeneralBox: React.FC<GeneralBoxProps> = ({
           <Image
             className="icon"
             style={{ height: "100%" }}
-            src={`/assets/images/png/icons/${item === "Player card" || item === "Adicionales" ? "Skin" : item === 'Nivel' || item === 'Nick' ? 'Hechizo' : item === 'Rango' ? 'Borde' : item}.${ext}`}
+            src={`/assets/images/png/icons/${item === "Player card" || item === "Adicionales" ? "Skin" : item === 'Nivel' || item === 'Nick' ? 'Hechizo 1' : item === 'Rango' ? 'Borde' : item === 'Marco de Nivel' ? 'Marco' : item}.${ext}`}
             alt={`${item}`}
             width={50}
             height={50}

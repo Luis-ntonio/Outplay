@@ -258,7 +258,8 @@ export default function Home() {
             <h1
               className="text transform-nivel"
               style={{ 
-                position: "absolute", fontFamily: "Valo_Regular"}}
+                position: "absolute", fontFamily: "Valo_Regular"
+              }}
               >
               {inputValues.text1}
             </h1>
@@ -276,7 +277,7 @@ export default function Home() {
         </div>
         <div className="rightcont">
           <GeneralBox
-            item="Marco"
+            item="Marco de Nivel"
             ext="svg"
             images={marcosvalo}
             icons={icons}

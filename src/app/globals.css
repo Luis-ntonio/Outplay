@@ -152,6 +152,13 @@
   0.866025,   0,       0.5,      0,
  5,     0,      15,        1);
 }
+.transform-text {
+  transform: matrix3d(
+  0.74,        0,      -0.866025, -0.00085,
+  0,   0.94,    -1.03209,  0,
+  0.866025,   0,       0.5,      0,
+ 5,     0,      15,        1) rotate(1.5deg);
+}
 
 .transform-hechizos {
   transform: matrix3d(
@@ -239,6 +246,23 @@ h1{
   width: 100%;
   top: 56.5%;
   left: -6%;
+}
+.text3-container{
+  width: 82%;
+  left: 0.5%;
+  height: 30px;
+  top: 60%;
+  position: absolute;
+  background-color: #c2c2c24d;
+}
+.text3{
+  font-size: 1.8em;
+  width: 100%;
+  top: 20.5%;
+  left: 0%;
+  position: relative;
+  color: white;
+
 }
 
 h1.transform-hechizos {

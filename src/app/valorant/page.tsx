@@ -272,6 +272,16 @@ export default function Home() {
               {inputValues.text2}
             </h1>
             )}
+            {inputValues.text3 && (
+            <div className="text3-container transform-text" style={{ position: "absolute"}}>
+            <h1
+              className="text3 transform-image2"
+              style={{fontFamily: "Valo_Regular"}}
+              >
+              {inputValues.text3}
+            </h1>
+            </div>
+            )}
             
             
         </div>
@@ -302,6 +312,15 @@ export default function Home() {
             isExpandedInput={expandedBox === "text2"}
             onClick={() => handleBoxClick("text2")}
             onInputChange={(value) => handleInputChange("text2", value)}
+          />
+          <GeneralBox
+            item="Titulo"
+            ext="svg"
+            type="input"
+            icons={icons}
+            isExpandedInput={expandedBox === "text3"}
+            onClick={() => handleBoxClick("text3")}
+            onInputChange={(value) => handleInputChange("text3", value)}
           />
           <button className="comprar" onClick={handleDownload}>Comprar</button>
         </div>

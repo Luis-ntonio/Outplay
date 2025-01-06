@@ -90,6 +90,12 @@ export default function Home() {
       });
   };
 
+  const calculateFontSize = (text: string) => {
+    const baseSize = 22; // Base font size
+    const maxLength = 22; // Maximum length before scaling down
+    return text.length > maxLength ? `${baseSize - (text.length - maxLength)}px` : `${baseSize}px`;
+  };
+
   return (
     <main className="flex flex-col items-center justify-between p-24 font-Panchang_Complete">
       <div className="bg"></div>
@@ -246,6 +252,7 @@ export default function Home() {
             <h1
               className="text transform-hechizos"
               style={{ 
+                fontSize: calculateFontSize(inputValues.text1),
                 position: "absolute", top: `${imagePositions.text1?.top || 0}px`, left: `${imagePositions.text1?.left || 0}px`,}}
               >
               {inputValues.text1}
@@ -254,7 +261,10 @@ export default function Home() {
             {inputValues.text2 && (
             <h1
               className="text transform-hechizos2"
-              style={{ color: "yellow", position: "absolute", top: `${imagePositions.text2?.top || 0}px`, left: `${imagePositions.text2?.left || 0}px`,}}
+              style={{ 
+                color: "yellow", 
+                fontSize: calculateFontSize(inputValues.text2),
+                position: "absolute", top: `${imagePositions.text2?.top || 0}px`, left: `${imagePositions.text2?.left || 0}px`,}}
               >
               {inputValues.text2}
             </h1>
